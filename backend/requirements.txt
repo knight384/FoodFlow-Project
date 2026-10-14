@@ -1,0 +1,42 @@
+# Backend dependencies — Phase 1 (Repository & Development Environment Setup)
+#
+# Scope: application bootstrapping, PostgreSQL connectivity, and basic
+# dev tooling only. No ML libraries, no auth libraries, and no ORM
+# migration tooling are pinned yet — those are introduced when the
+# corresponding business features are implemented in later phases.
+
+# --- Web framework ---
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# --- Multipart form parsing ---
+# Required at RUNTIME by app/modules/historical_data/router.py's
+# `file: UploadFile` parameter (HIST-001, POST /historical-data/imports).
+# API Specification v1.0 Section 14 specifies multipart/form-data for
+# this endpoint. FastAPI/Starlette defer multipart parsing to this
+# package — it is never imported directly in application code, but is
+# loaded internally the moment any request hits an UploadFile-typed
+# endpoint. Without it, FastAPI raises at request time:
+#   RuntimeError: Form data requires "python-multipart" to be installed.
+# This was missing from Phase 4's original requirements.txt; added here
+# as a targeted dependency fix (no code/behavior change).
+python-multipart==0.0.9
+
+# --- Configuration ---
+python-dotenv==1.0.1
+
+# --- Database connectivity (Database Specification v1.0: PostgreSQL) ---
+sqlalchemy==2.0.35
+psycopg[binary]==3.2.2
+
+# --- Migrations (Phase 2: Database Implementation; Database Spec v1.0 Section 25) ---
+alembic==1.13.3
+
+# --- Authentication (Phase 3: Backend Foundation) ---
+bcrypt==4.2.0
+PyJWT==2.9.0
+
+# --- Dev tooling (Section: Development Environment / Linting) ---
+ruff==0.6.9
+pytest==8.3.3
+httpx==0.27.2

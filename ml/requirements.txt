@@ -1,0 +1,20 @@
+# ML module dependencies — Phase 1 (Repository & Development Environment Setup)
+#
+# Scope: core data-science stack only, sufficient to eventually load and
+# manipulate historical data. No forecasting-algorithm-specific library
+# (e.g., a time-series or gradient-boosting library) is pinned yet, since
+# no algorithm has been selected (TRD v1.0 Section 12, ML & Testing Plan
+# v1.0 Section 6 — explicitly deferred).
+#
+# This module runs inside the backend's Python environment (TRD v1.0
+# Section 5/12: internal module, not a separate service), so in a later
+# phase these dependencies are expected to be merged into
+# backend/requirements.txt rather than maintained as a fully separate
+# environment — kept separate for now only to make this module's
+# dependency footprint explicit during Phase 1.
+
+pandas==2.2.3
+numpy==2.1.1
+
+# --- Dev tooling ---
+pytest==8.3.3

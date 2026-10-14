@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-textPrimary antialiased selection:bg-accent/30 selection:text-textPrimary;
+  }
+}
+
+/* Common enterprise form input styles to avoid repetition */
+@layer components {
+  .input-field {
+    @apply w-full rounded-md border border-border bg-surface px-4 py-2.5 text-sm text-textPrimary shadow-sm transition-all duration-200 placeholder:text-textSecondary focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 focus:bg-surfaceHighlight disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-accentHover hover:shadow-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-background active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-border bg-surface px-4 py-2.5 text-sm font-medium text-textPrimary shadow-sm transition-all duration-200 hover:bg-surfaceHighlight hover:border-textSecondary/30 focus:outline-none focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-background active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-md bg-statusShortage/10 border border-statusShortage/20 px-4 py-2.5 text-sm font-medium text-statusShortage transition-all duration-200 hover:bg-statusShortage/20 hover:border-statusShortage/40 focus:outline-none focus:ring-2 focus:ring-statusShortage/50 focus:ring-offset-2 focus:ring-offset-background active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .card {
+    @apply rounded-xl border border-border bg-surface shadow-sm transition-all duration-200 hover:shadow-md;
+  }
+}
+
+/* Custom scrollbar for a professional look on Windows/Linux */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46; 
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b; 
+}

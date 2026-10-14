@@ -1,0 +1,31 @@
+# Local development convenience only — NOT a production deployment
+# configuration. TRD v1.0 Section 22 explicitly leaves the final
+# deployment/hosting target open; this file exists solely so a
+# contributor can run `docker compose up` to get a local PostgreSQL
+# instance for backend development, per TRD v1.0 Section 21
+# ("Development" environment) and Section 23 ("database setup approach").
+#
+# No application services (frontend/backend) are containerized here —
+# containerizing the application itself is a deployment-stage decision
+# (TRD v1.0 Section 22), not a Phase 1 concern.
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: foodflow_app
+      POSTGRES_PASSWORD: foodflow_app
+      POSTGRES_DB: foodflow_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - foodflow_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U foodflow_app -d foodflow_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  foodflow_pg_data:

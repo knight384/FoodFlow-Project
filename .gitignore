@@ -1,0 +1,30 @@
+# --- Environment / secrets ---
+.env
+.env.local
+.env.*.local
+
+# --- Python (backend, ml) ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# --- Node / Next.js (frontend) ---
+node_modules/
+.next/
+out/
+next-env.d.ts
+npm-debug.log*
+
+# --- Data (never commit real or large datasets) ---
+data/*.csv
+data/*.xlsx
+!data/README.md
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/
